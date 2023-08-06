@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/general/themeProvider";
 import Header from "@/components/main/header";
+import { useLocale } from "next-intl";
+import SuppressHydrationWarning from "@/components/general/suppressHydrationWarning";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,13 +14,17 @@ const poppins = Poppins({
 export const metadata: Metadata = { title: "Trial application" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = useLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={poppins.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
-        </ThemeProvider>
+        <SuppressHydrationWarning>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Header locale={locale} />
+            {children}
+          </ThemeProvider>
+        </SuppressHydrationWarning>
       </body>
     </html>
   );
