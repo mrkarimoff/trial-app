@@ -2,6 +2,8 @@
   "Index": {
     "title": "Hello world!",
     "participant": "Participants page",
-    "admin": "Admin Page"
+    "admin": "Admin Page",
+    "user": "User Page",
+    "denied": "Access Denied!!!"
   }
 }

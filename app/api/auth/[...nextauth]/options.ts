@@ -9,6 +9,9 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
   ],
+  pages: {
+    signIn: "/denied",
+  },
   callbacks: {
     async session({ session, token }) {
       // Check if the user already exists in the database based on their email
