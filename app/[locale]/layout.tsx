@@ -1,17 +1,19 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import { ThemeProvider } from "@/components/general/themeProvider";
-import Header from "@/components/main/header";
-import { useLocale } from "next-intl";
+import SessionProviders from "@/components/general/sessionProviders";
 import SuppressHydrationWarning from "@/components/general/suppressHydrationWarning";
+import { ThemeProvider } from "@/components/general/themeProvider";
+import HeaderWithProvider from "@/components/main/header";
+import { Toaster } from "@/components/ui/toaster";
+import type { Metadata } from "next";
+import { useLocale } from "next-intl";
+import { Poppins } from "next/font/google";
+import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const metadata: Metadata = { title: "Trial application" };
+export const metadata: Metadata = { title: "Create Next App" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = useLocale();
@@ -19,12 +21,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={locale}>
       <body className={poppins.className}>
-        <SuppressHydrationWarning>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Header locale={locale} />
-            {children}
-          </ThemeProvider>
-        </SuppressHydrationWarning>
+        <SessionProviders>
+          <SuppressHydrationWarning>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <HeaderWithProvider locale={locale} />
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </SuppressHydrationWarning>
+        </SessionProviders>
       </body>
     </html>
   );
