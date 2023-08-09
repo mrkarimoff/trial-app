@@ -1,14 +1,8 @@
 {
-  "Index": {
-    "title": "Hello world!",
-    "participant": "Participants page",
-    "admin": {
-      "title": "Admin Page"
-    },
-    "user": "User Page",
-    "denied": "Access Denied!!!"
+  "JsonsPage": {
+    "title": "Jsons Page",
+    "noFilesMsg": "No JSON data available yet."
   },
-
   "Admin": {
     "title": "Admin Page",
     "userTab": "User List",
