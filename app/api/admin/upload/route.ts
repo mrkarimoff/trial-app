@@ -12,9 +12,9 @@ export async function POST(req: Request) {
   const jsonFiles: JsonFile[] = await req.json();
 
   try {
-    // const session = await getServerSession(options);
-    // if (session?.user.role !== "admin")
-    //   return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+    const session = await getServerSession(options);
+    if (session?.user.role !== "admin")
+      return NextResponse.json({ message: "Access Denied" }, { status: 403 });
 
     if (!jsonFiles.length) return NextResponse.json({ message: "No file here" }, { status: 400 });
 
