@@ -1,7 +1,37 @@
 {
+  "DeniedPage": {
+    "deniedMsg": "Access Denied!!!",
+    "warning": "You do not have admin permissions, please",
+    "changeRoleBtn": "change your role",
+    "signInWarning": "Please sign in to your account to have access to this page",
+    "signInBtn": "Sign in",
+    "signInModalTitle": "Sign in to your account",
+    "signInGithub": "Sign in with Github"
+  },
   "JsonsPage": {
     "title": "Jsons Page",
     "noFilesMsg": "No JSON data available yet."
+  },
+  "RolePage": {
+    "update": "Update role",
+    "currentRole": "Your current role is",
+    "changeToParticipant": "Change to Participant",
+    "changeToUser": "Change to User",
+    "changeToAdmin": "Change to Admin"
+  },
+  "Header": {
+    "jsonsLink": "JSON files page",
+    "adminLink": "Admin page",
+    "menu": "Menu",
+    "role": "Role",
+    "changeRole": "Change role",
+    "signOutBtn": "Sign out",
+    "signInBtn": "Sign in",
+    "signInModalTitle": "Sign in to your account",
+    "signInGithub": "Sign in with Github",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   },
   "Admin": {
     "title": "Admin Page",

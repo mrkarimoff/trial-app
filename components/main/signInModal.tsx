@@ -7,9 +7,10 @@ import Modal from "../ui/modal";
 interface ISingInModal {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  UiTranslations: any;
 }
 
-const SignInModal = ({ openModal, setOpenModal }: ISingInModal) => {
+const SignInModal = ({ openModal, setOpenModal, UiTranslations }: ISingInModal) => {
   let redirectUrl = process.env.NEXT_PUBLIC_DOMAIN + "/role";
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const SignInModal = ({ openModal, setOpenModal }: ISingInModal) => {
         {openModal && (
           <Modal
             modalContentStyle={{ height: "240px", width: "400px", position: "relative" }}
-            title={"Sign in to your account"}
+            title={UiTranslations.signInModalTitle}
             visible={openModal}
             close={() => setOpenModal(false)}
           >
@@ -37,7 +38,9 @@ const SignInModal = ({ openModal, setOpenModal }: ISingInModal) => {
                 className="social-btn relative mx-auto bg-white dark:bg-slate-700 flex w-[300px] items-center justify-center rounded-lg border-2 border-solid border-[#ECECEC] py-4 pl-4 pr-0 transition-shadow"
               >
                 <SiGithub className="absolute left-5 text-black dark:text-white" size={28} />
-                <span className="text-[17px] text-black dark:text-white">Sign in with Github</span>
+                <span className="text-[17px] text-black dark:text-white">
+                  {UiTranslations.signInGithub}
+                </span>
               </button>
             </div>
           </Modal>

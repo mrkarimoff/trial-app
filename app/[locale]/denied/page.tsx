@@ -1,38 +1,49 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import SignInMessage from "@/components/main/deniedPage/signInMessage";
-import { getServerSession } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import Link from "next/link";
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
-const DeniedPage = async () => {
-  // const t = useTranslations("Index");
-  const session = await getServerSession(options);
+const DeniedPage = ({ session }: { session: Session | null }) => {
+  const t = useTranslations("DeniedPage");
+  const UiTranslations = {
+    deniedMsg: t("deniedMsg"),
+    warning: t("warning"),
+    changeRoleBtn: t("changeRoleBtn"),
+    signInWarning: t("signInWarning"),
+    signInBtn: t("signInBtn"),
+    signInModalTitle: t("signInModalTitle"),
+    signInGithub: t("signInGithub"),
+  };
 
   if (!session)
     return (
       <div className="my-20 gap-2 flex flex-col items-center">
-        <h1 className="text-center text-red-600 text-2xl">Access Denied!!!</h1>
-        <SignInMessage />
+        <h1 className="text-center text-red-600 text-2xl">{UiTranslations.deniedMsg}</h1>
+        <SignInMessage UiTranslations={UiTranslations} />
       </div>
     );
 
   if (session?.user.role !== "admin") {
     return (
       <div className="my-20 gap-2 flex flex-col items-center">
-        <h1 className="text-center text-red-600 text-2xl">Access Denied!!!</h1>
+        <h1 className="text-center text-red-600 text-2xl">{UiTranslations.deniedMsg}</h1>
         <p className="text-center">
-          You do not have admin permissions, please{" "}
+          {UiTranslations.warning}{" "}
           <Link className="underline text-blue-600" href={"/role"}>
-            change your role
+            {UiTranslations.changeRoleBtn}
           </Link>
         </p>
       </div>
     );
   }
+  return null;
 };
 
-export default DeniedPage;
+const DeniedPageContainer = async () => {
+  const session = await getServerSession(options);
 
-{
-  /* <h1 className="text-center text-red-600 text-2xl">{t("denied")}</h1> */
-}
+  return <DeniedPage session={session} />;
+};
+
+export default DeniedPageContainer;

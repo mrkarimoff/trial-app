@@ -11,7 +11,12 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import LanguageSwitcher from "../general/languageSwitcher";
 import { Button } from "../ui/button";
 
-const Drawer = ({ locale }: { locale: string }) => {
+interface IDrawerProps {
+  locale: string;
+  UiTranslations: any;
+}
+
+const Drawer = ({ locale, UiTranslations }: IDrawerProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild className="sm:hidden">
@@ -21,17 +26,19 @@ const Drawer = ({ locale }: { locale: string }) => {
       </SheetTrigger>
       <SheetContent side={"left"}>
         <SheetHeader>
-          <SheetTitle className="text-left mt-3 flex justify-between">Menu</SheetTitle>
+          <SheetTitle className="text-left mt-3 flex justify-between">
+            {UiTranslations.menu}
+          </SheetTitle>
           <LanguageSwitcher width="w-full" locale={locale} />
           <div style={{ marginTop: "15px" }} className="gap-6 flex flex-col text-start">
             <SheetClose asChild>
               <Link className="underline text-blue-600" href={"/jsons"}>
-                JSON files page
+                {UiTranslations.jsonsLink}
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <Link className="underline text-blue-600" href={"/admin"}>
-                Admin page
+                {UiTranslations.adminLink}
               </Link>
             </SheetClose>
           </div>

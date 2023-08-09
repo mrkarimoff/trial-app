@@ -20,11 +20,11 @@ const LanguageSwitcher = ({ locale, width }: LanguageSwitcherProps) => {
   return (
     <Select onValueChange={(val) => router.push(pathname, { locale: val })}>
       <SelectTrigger className={`dark:bg-slate-700 bg-white ${width} space-x-1 text-xs sm:text-sm`}>
-        <SelectValue placeholder={locale === "en" ? "English" : "Russian"} />
+        <SelectValue placeholder={locale === "en" ? "English" : "Русский"} />
       </SelectTrigger>
       <SelectContent className="dark:bg-slate-700 bg-white">
         <SelectItem value="en">English</SelectItem>
-        <SelectItem value="ru">Russian</SelectItem>
+        <SelectItem value="ru">Русский</SelectItem>
       </SelectContent>
     </Select>
   );

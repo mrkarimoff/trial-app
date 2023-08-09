@@ -1,7 +1,37 @@
 {
+  "DeniedPage": {
+    "deniedMsg": "Доступ запрещен!!!",
+    "warning": "У вас нет прав администратора, пожалуйста",
+    "changeRoleBtn": "изменить свою роль",
+    "signInWarning": "Пожалуйста, войдите в свою учетную запись, чтобы получить доступ к этой странице",
+    "signInBtn": "Войти",
+    "signInModalTitle": "Войдите в свой аккаунт",
+    "signInGithub": "Войти через Github"
+  },
   "JsonsPage": {
-    "title": "Страница Jsons",
+    "title": "Страница JSONS",
     "noFilesMsg": "Данные JSON пока недоступны."
+  },
+  "RolePage": {
+    "update": "Обновить роль",
+    "currentRole": "Ваша текущая роль",
+    "changeToParticipant": "Изменить на участника",
+    "changeToUser": "Изменить на пользователя",
+    "changeToAdmin": "Изменить на админа"
+  },
+  "Header": {
+    "jsonsLink": "Страница JSON",
+    "adminLink": "Страница админ",
+    "menu": "Меню",
+    "role": "Роль",
+    "changeRole": "Изменить роль",
+    "signOutBtn": "Выход",
+    "signInBtn": "Войти",
+    "signInModalTitle": "Войдите в свой аккаунт",
+    "signInGithub": "Войти через Github",
+    "light": "День",
+    "dark": "Ночь",
+    "system": "Система"
   },
   "Admin": {
     "title": "Страница администратора",
