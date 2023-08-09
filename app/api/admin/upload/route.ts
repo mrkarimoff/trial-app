@@ -16,24 +16,24 @@ export async function POST(req: Request) {
   const jsonFiles = files.map((item) => item as File);
 
   try {
-    if (!jsonFiles.length) return NextResponse.json({ message: "No file here" }, { status: 400 });
+    // if (!jsonFiles.length) return NextResponse.json({ message: "No file here" }, { status: 400 });
 
-    jsonFiles.forEach(async (jsonFile) => {
-      const bytes = await jsonFile.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+    // jsonFiles.forEach(async (jsonFile) => {
+    //   const bytes = await jsonFile.arrayBuffer();
+    //   const buffer = Buffer.from(bytes);
 
-      const path = join("./", "tmp", jsonFile.name);
-      await writeFile(path, buffer);
+    //   const path = join("./", "tmp", jsonFile.name);
+    //   await writeFile(path, buffer);
 
-      const data: string = await fs.readFile(path, "utf8");
-      await prisma.jsonData.create({
-        data: {
-          data: data,
-          name: jsonFile.name,
-        },
-      });
-      await fs.unlink(path);
-    });
+    //   const data: string = await fs.readFile(path, "utf8");
+    //   await prisma.jsonData.create({
+    //     data: {
+    //       data: data,
+    //       name: jsonFile.name,
+    //     },
+    //   });
+    //   await fs.unlink(path);
+    // });
 
     return NextResponse.json({ message: "File uploaded successfully!" });
   } catch (error) {
