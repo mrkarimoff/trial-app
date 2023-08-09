@@ -10,6 +10,8 @@ interface IModalContent {
   btn?: {
     disabled: boolean;
     isUploading: boolean;
+    submitBtn: string;
+    uploadingBtn: string;
   };
   children: ReactNode;
   close: () => void;
@@ -46,7 +48,7 @@ const ModalContent = ({ title, children, btn, close, modalContentStyle, form }: 
             type="submit"
             className="btn-info right-6 float-right flex h-10 w-[150px] items-center justify-center font-semibold disabled:bg-slate-300"
           >
-            {btn?.isUploading ? "Uploading..." : "Submit"}
+            {btn?.isUploading ? btn.uploadingBtn : btn.submitBtn}
           </Button>
         </div>
       )}

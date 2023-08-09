@@ -6,10 +6,11 @@ import { AnimatePresence } from "framer-motion";
 import React, { FormEvent, useState } from "react";
 import Dropzone from "../dropzone";
 
-interface IUploadForm {
+interface IUploadFormProps {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   openModal: boolean;
   getJsons: () => Promise<void>;
+  UiTranlations: any;
 }
 
 type JsonFile = {
@@ -17,7 +18,7 @@ type JsonFile = {
   name: string;
 };
 
-const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
+const UploadForm = ({ setOpenModal, openModal, getJsons, UiTranlations }: IUploadFormProps) => {
   const { toast } = useToast();
   const [files, setFiles] = useState<Array<File>>([]);
   const [isUploading, setIsUploading] = useState(false);
@@ -26,10 +27,12 @@ const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
     e.preventDefault();
     setIsUploading(true);
 
-    if (!files?.length)
+    if (!files?.length) {
+      setIsUploading(false);
       return toast({
-        title: "Please upload your file/files!",
+        title: UiTranlations.uploadWarningMsg,
       });
+    }
 
     let jsons: JsonFile[] = [];
     for (const file of files) {
@@ -61,16 +64,18 @@ const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
           btn={{
             disabled: false,
             isUploading,
+            submitBtn: UiTranlations.modalSubmitBtn,
+            uploadingBtn: UiTranlations.uploading,
           }}
-          title={"Upload your JSON"}
+          title={UiTranlations.modalTitle}
           visible={openModal}
           close={emptyForm}
           form="uploadForm"
         >
           <form id="uploadForm" onSubmit={handleSubmit}>
             <Dropzone
-              {...{ files, setFiles }}
-              className="mx-auto w-fit cursor-pointer border border-dashed border-neutral-300 p-10 transition-colors hover:border-red-400"
+              {...{ files, setFiles, UiTranlations }}
+              className="mx-auto w-fit mt-5 cursor-pointer border border-dashed border-neutral-300 p-10 transition-colors hover:border-red-400"
             />
           </form>
         </Modal>

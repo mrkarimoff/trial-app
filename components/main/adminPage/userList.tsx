@@ -10,7 +10,7 @@ import { User } from "@/redux/globalReducer";
 import { useState, useEffect } from "react";
 import { Loader } from "../loader";
 
-const UserList = () => {
+const UserList = ({ UiTranlations }: { UiTranlations: any }) => {
   const [users, setUsers] = useState<Array<User>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,11 +33,11 @@ const UserList = () => {
     <Table className="mt-3">
       <TableHeader>
         <TableRow>
-          <TableHead>No:</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Image</TableHead>
-          <TableHead>Role</TableHead>
+          <TableHead>{UiTranlations.noColumn}</TableHead>
+          <TableHead>{UiTranlations.nameColumn}</TableHead>
+          <TableHead>{UiTranlations.emailColumn}</TableHead>
+          <TableHead>{UiTranlations.imageColumn}</TableHead>
+          <TableHead>{UiTranlations.roleColumn}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

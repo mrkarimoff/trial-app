@@ -8,9 +8,10 @@ interface IDropZone {
   className: string;
   files: Array<File>;
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  UiTranlations: any;
 }
 
-const Dropzone = ({ className, files, setFiles }: IDropZone) => {
+const Dropzone = ({ className, files, setFiles, UiTranlations }: IDropZone) => {
   const [rejected, setRejected] = useState<FileRejection[]>([]);
 
   const onDrop = useCallback(
@@ -53,9 +54,9 @@ const Dropzone = ({ className, files, setFiles }: IDropZone) => {
         <div className="flex flex-col items-center justify-center gap-2">
           <LuImagePlus className="text-red-400" size={28} />
           {isDragActive ? (
-            <p className="text-sm">Drop the files here ...</p>
+            <p className="text-sm">{UiTranlations.dropFilesMsg}</p>
           ) : (
-            <p className="text-sm">Drag & drop files here, or click to select files</p>
+            <p className="text-sm">{UiTranlations.dndFilesMsg}</p>
           )}
         </div>
       </div>
@@ -66,7 +67,7 @@ const Dropzone = ({ className, files, setFiles }: IDropZone) => {
           <div className="h-[160px] w-full overflow-y-auto overflow-x-hidden px-4">
             {/* Accepted files */}
             <h3 className="mt-3 border-b pb-2 text-sm font-semibold text-neutral-600 dark:text-white">
-              Accepted Files
+              {UiTranlations.acceptedFiles}
             </h3>
             <ul className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {files.map((file) => (
@@ -85,7 +86,7 @@ const Dropzone = ({ className, files, setFiles }: IDropZone) => {
             {/* Rejected Files */}
             {rejected?.length > 0 && (
               <h3 className="mt-3 border-b pb-2 text-sm font-semibold text-neutral-600 dark:text-white">
-                Rejected Files
+                {UiTranlations.rejectedFiles}
               </h3>
             )}
             <ul className="mt-3 flex flex-col">
@@ -104,7 +105,7 @@ const Dropzone = ({ className, files, setFiles }: IDropZone) => {
                     className="border-secondary-400 mt-1 rounded-md border px-3 py-1 text-[12px] font-bold uppercase tracking-wider text-neutral-500 dark:text-white transition-colors hover:bg-red-400 hover:text-white"
                     onClick={() => removeRejected(file.name)}
                   >
-                    remove
+                    {UiTranlations.removeBtn}
                   </button>
                 </li>
               ))}

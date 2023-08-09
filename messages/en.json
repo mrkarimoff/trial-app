@@ -2,8 +2,34 @@
   "Index": {
     "title": "Hello world!",
     "participant": "Participants page",
-    "admin": "Admin Page",
+    "admin": {
+      "title": "Admin Page"
+    },
     "user": "User Page",
     "denied": "Access Denied!!!"
+  },
+
+  "Admin": {
+    "title": "Admin Page",
+    "userTab": "User List",
+    "jsonsTab": "JSON List",
+    "noColumn": "No:",
+    "nameColumn": "Name",
+    "emailColumn": "Email",
+    "imageColumn": "Image",
+    "roleColumn": "Role",
+    "createdColumn": "Created at",
+    "updatedColumn": "Updated at",
+    "actionColumn": "Action",
+    "uploadBtn": "Upload JSON",
+    "uploadWarningMsg": "Please upload your file/files!",
+    "modalTitle": "Upload your JSON",
+    "modalSubmitBtn": "Submit",
+    "uploading": "Uploading...",
+    "dropFilesMsg": "Drop the files here ...",
+    "dndFilesMsg": "Drag & drop files here, or click to select files",
+    "acceptedFiles": "Accepted Files",
+    "rejectedFiles": "Rejected Files",
+    "removeBtn": "remove"
   }
 }

@@ -5,5 +5,28 @@
     "admin": "Страница администратора",
     "user": "Страница пользователя",
     "denied": "Доступ запрещен!!!"
+  },
+  "Admin": {
+    "title": "Страница администратора",
+    "userTab": "Список пользователей",
+    "jsonsTab": "Список JSON",
+    "noColumn": "Но:",
+    "nameColumn": "Имя",
+    "emailColumn": "Электронная почта",
+    "imageColumn": "Изображение",
+    "roleColumn": "Роль",
+    "createdColumn": "Создан в",
+    "updatedColumn": "Обновлено в",
+    "actionColumn": "Действие",
+    "uploadBtn": "Загрузить JSON",
+    "uploadWarningMsg": "Пожалуйста, загрузите файл/файлы!",
+    "modalTitle": "Загрузите свой JSON",
+    "modalSubmitBtn": "Сохранять",
+    "uploading": "Загрузка...",
+    "dropFilesMsg": "Кидайте файлы сюда...",
+    "dndFilesMsg": "Перетащите файлы сюда или нажмите, чтобы выбрать файлы",
+    "acceptedFiles": "Принятые файлы",
+    "rejectedFiles": "Rejected Files",
+    "removeBtn": "удалять"
   }
 }

@@ -3,16 +3,26 @@ import React, { useState } from "react";
 import UploadForm from "./uploadForm";
 import { Button } from "@/components/ui/button";
 
-const UploadContainer = ({ getJsons }: { getJsons: () => Promise<void> }) => {
+interface UploadContainerProps {
+  UiTranlations: any;
+  getJsons: () => Promise<void>;
+}
+
+const UploadContainer = ({ getJsons, UiTranlations }: UploadContainerProps) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <div>
       <Button onClick={() => setOpenModal(true)} className="py-2 px-4 mx-2">
-        Upload JSON
+        {UiTranlations.uploadBtn}
       </Button>
 
-      <UploadForm getJsons={getJsons} setOpenModal={setOpenModal} openModal={openModal} />
+      <UploadForm
+        UiTranlations={UiTranlations}
+        getJsons={getJsons}
+        setOpenModal={setOpenModal}
+        openModal={openModal}
+      />
     </div>
   );
 };

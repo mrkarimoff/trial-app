@@ -10,6 +10,8 @@ interface IModal {
   btn?: {
     disabled: boolean;
     isUploading: boolean;
+    submitBtn: string;
+    uploadingBtn: string;
   };
   children: ReactNode;
   close: () => void;

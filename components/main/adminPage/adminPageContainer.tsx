@@ -7,7 +7,7 @@ import { Provider, useSelector } from "react-redux";
 import JsonsList from "./jsonsList";
 import UserList from "./userList";
 
-const AdminPageContainer = () => {
+const AdminPageContainer = ({ UiTranlations }: { UiTranlations: any }) => {
   const user = useSelector((state: RootState) => state.global.user);
   const [role, setRole] = useState("");
 
@@ -21,31 +21,31 @@ const AdminPageContainer = () => {
 
   return (
     <div className="container flex flex-col items-center gap-4">
-      <h1>Admin Page</h1>
+      <h1 className="text-xl text-center font-semibold mt-3">{UiTranlations.title}</h1>
       <Tabs defaultValue="users" className="w-full">
         <TabsList className="w-full">
           <TabsTrigger className="w-[200px]" value="users">
-            User List
+            {UiTranlations.userTab}
           </TabsTrigger>
           <TabsTrigger className="w-[200px]" value="jsons">
-            JSON List
+            {UiTranlations.jsonsTab}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="users">
-          <UserList />
+          <UserList UiTranlations={UiTranlations} />
         </TabsContent>
         <TabsContent value="jsons">
-          <JsonsList />
+          <JsonsList UiTranlations={UiTranlations} />
         </TabsContent>
       </Tabs>
     </div>
   );
 };
 
-const AdminPageWithProvider = () => {
+const AdminPageWithProvider = ({ UiTranlations }: { UiTranlations: any }) => {
   return (
     <Provider store={store}>
-      <AdminPageContainer />
+      <AdminPageContainer UiTranlations={UiTranlations} />
     </Provider>
   );
 };

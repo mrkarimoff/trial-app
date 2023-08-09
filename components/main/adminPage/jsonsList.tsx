@@ -19,7 +19,7 @@ interface IJSON {
   updatedAt: string;
 }
 
-const JsonsList = () => {
+const JsonsList = ({ UiTranlations }: { UiTranlations: any }) => {
   const [jsons, setJsons] = useState<Array<IJSON>>([]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,15 +47,15 @@ const JsonsList = () => {
     <Loader />
   ) : (
     <div className="mt-3">
-      <UploadContainer getJsons={getJsons} />
+      <UploadContainer UiTranlations={UiTranlations} getJsons={getJsons} />
       <Table className={`mt-3 ${isDeleting && "opacity-50"}`}>
         <TableHeader>
           <TableRow>
-            <TableHead>No:</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Created at</TableHead>
-            <TableHead>Updated at</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead>{UiTranlations.noColumn}</TableHead>
+            <TableHead>{UiTranlations.nameColumn}</TableHead>
+            <TableHead>{UiTranlations.createdColumn}</TableHead>
+            <TableHead>{UiTranlations.updatedColumn}</TableHead>
+            <TableHead>{UiTranlations.actionColumn}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
