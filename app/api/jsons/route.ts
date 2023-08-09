@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
 export async function GET(req: Request) {
-  try {
-    // const session = await getServerSession(options);
-    // if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+  const session = await getServerSession(options);
+  if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
 
+  try {
     const jsonData = await prisma.jsonData.findMany();
     return NextResponse.json(jsonData);
   } catch (error) {
