@@ -12,10 +12,6 @@ interface IUploadForm {
   getJsons: () => Promise<void>;
 }
 
-interface MyFile extends File {
-  preview?: string;
-}
-
 type JsonFile = {
   data: string;
   name: string;
@@ -23,7 +19,7 @@ type JsonFile = {
 
 const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
   const { toast } = useToast();
-  const [files, setFiles] = useState<Array<MyFile>>([]);
+  const [files, setFiles] = useState<Array<File>>([]);
   const [isUploading, setIsUploading] = useState(false);
 
   async function handleSubmit(e: FormEvent) {
@@ -53,8 +49,6 @@ const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
   }
 
   const emptyForm: () => void = () => {
-    // Revoke the data uris to avoid memory leaks
-    files.forEach((file) => URL.revokeObjectURL(file.preview as string));
     setIsUploading(false);
     setOpenModal(false);
     setFiles([]);
