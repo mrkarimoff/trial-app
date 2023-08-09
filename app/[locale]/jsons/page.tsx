@@ -18,14 +18,18 @@ type JSONData = {
 const Jsons = () => {
   const [data, setData] = useState<Array<JSONFile>>([]);
 
+  console.log("Data line 2: ", data);
+
   const getJsons = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
     const data: Array<JSONFile> = await res.json();
     setData(data);
+    console.log("Data after the response: ", data);
   };
 
   useEffect(() => {
     getJsons();
+    console.log("Data in useEffet: ", data);
   }, []);
 
   const handleDownloadClick = async (id: number) => {
@@ -53,9 +57,12 @@ const Jsons = () => {
     }
   };
 
+  console.log("Data before return: ", data);
+
   return (
     <div>
       <h1>Jsons Page</h1>
+
       <ul className="space-y-5">
         {data.length > 0 ? (
           data.map((item: JSONFile, index) => (
