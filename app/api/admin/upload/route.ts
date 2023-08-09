@@ -9,13 +9,13 @@ type JsonFile = {
 };
 
 export async function POST(req: Request) {
+  const session = await getServerSession(options);
+  if (session?.user.role !== "admin")
+    return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+
   const jsonFiles: JsonFile[] = await req.json();
 
   try {
-    const session = await getServerSession(options);
-    if (session?.user.role !== "admin")
-      return NextResponse.json({ message: "Access Denied" }, { status: 403 });
-
     if (!jsonFiles.length) return NextResponse.json({ message: "No file here" }, { status: 400 });
 
     await prisma.jsonData.createMany({
@@ -25,6 +25,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Files uploaded successfully!" });
   } catch (error) {
     console.error("Error reading the file:", error);
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ message: "Something is wrong", error });
   }
 }

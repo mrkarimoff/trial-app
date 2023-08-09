@@ -11,6 +11,6 @@ export async function GET(req: Request) {
     const jsonData = await prisma.jsonData.findMany();
     return NextResponse.json(jsonData);
   } catch (error) {
-    return NextResponse.json({ msg: "Something is wrong", error });
+    return NextResponse.json({ message: "Something is wrong", error });
   }
 }

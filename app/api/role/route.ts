@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
 export async function PUT(req: Request) {
-  try {
-    const session = await getServerSession(options);
-    if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+  const session = await getServerSession(options);
+  if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
 
+  try {
     const { email, role } = await req.json();
     const updateUser = await prisma.user.update({ where: { email }, data: { role } });
     return NextResponse.json(updateUser);

@@ -10,12 +10,12 @@ type Params = {
 };
 
 export async function GET(req: Request, { params }: Params) {
+  const session = await getServerSession(options);
+  if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+
   const { id } = params;
 
   try {
-    const session = await getServerSession(options);
-    if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
-
     // Fetch the JSON data by id
     const jsonData = await prisma.jsonData.findUnique({
       where: {
@@ -24,7 +24,7 @@ export async function GET(req: Request, { params }: Params) {
     });
 
     if (!jsonData) {
-      return NextResponse.json({ error: "JSON data not found" }, { status: 404 });
+      return NextResponse.json({ message: "JSON data not found" }, { status: 404 });
     }
 
     // Convert the JSON string to a JSON object
@@ -32,11 +32,15 @@ export async function GET(req: Request, { params }: Params) {
 
     return NextResponse.json({ id: jsonData.id, name: jsonData.name, data: jsonObject });
   } catch (error) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ message: "Something is wrong", error });
   }
 }
 
 export async function DELETE(req: Request, { params }: Params) {
+  const session = await getServerSession(options);
+  if (session?.user.role !== "admin")
+    return NextResponse.json({ message: "Access Denied" }, { status: 403 });
+
   const { id } = params;
 
   try {
@@ -47,6 +51,6 @@ export async function DELETE(req: Request, { params }: Params) {
     });
     return NextResponse.json(deletedJsonData);
   } catch (error) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ message: "Something is wrong", error });
   }
 }

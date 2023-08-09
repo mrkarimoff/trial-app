@@ -1,4 +1,5 @@
 "use client";
+import { useToast } from "@/components/ui/use-toast";
 import { useEffect, useState } from "react";
 
 type JSONFile = {
@@ -16,20 +17,24 @@ type JSONData = {
 };
 
 const Jsons = () => {
+  const { toast } = useToast();
   const [data, setData] = useState<Array<JSONFile>>([]);
 
-  console.log("Data line 2: ", data);
-
   const getJsons = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
-    const data: Array<JSONFile> = await res.json();
-    setData(data);
-    console.log("Data after the response: ", data);
+    try {
+      const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
+      const data: Array<JSONFile> = await res.json();
+      setData(data);
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: error.message,
+      });
+    }
   };
 
   useEffect(() => {
     getJsons();
-    console.log("Data in useEffet: ", data);
   }, []);
 
   const handleDownloadClick = async (id: number) => {
@@ -56,8 +61,6 @@ const Jsons = () => {
       console.error("Error fetching JSON data:", error);
     }
   };
-
-  console.log("Data before return: ", data);
 
   return (
     <div>
