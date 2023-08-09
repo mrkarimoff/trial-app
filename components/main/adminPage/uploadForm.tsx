@@ -36,10 +36,10 @@ const UploadForm = ({ setOpenModal, openModal, getJsons }: IUploadForm) => {
       });
 
     let jsons: JsonFile[] = [];
-    files.forEach(async (file) => {
+    for (const file of files) {
       const fileText = await readFileAsText(file);
       jsons.push({ data: fileText, name: file.name });
-    });
+    }
 
     // upload the files
     const data = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/admin/upload", {

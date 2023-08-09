@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       data: jsonFiles,
     });
 
-    return NextResponse.json({ message: "File uploaded successfully!" });
+    return NextResponse.json({ message: "Files uploaded successfully!" });
   } catch (error) {
     console.error("Error reading the file:", error);
     return NextResponse.json({ error }, { status: 500 });
