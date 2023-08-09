@@ -16,12 +16,20 @@ type JSONData = {
 };
 
 const Jsons = () => {
-  const [data, setData] = useState<Array<JSONFile>>([]);
+  const [data, setData] = useState<Array<JSONFile>>([
+    {
+      id: 12,
+      data: "string",
+      name: "string",
+      createdAt: "string",
+      updatedAt: "string",
+    },
+  ]);
 
   const getJsons = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
     const data: Array<JSONFile> = await res.json();
-    setData(data);
+    // setData(data);
   };
 
   useEffect(() => {
