@@ -57,14 +57,21 @@ const Jsons = () => {
     <div>
       <h1>Jsons Page</h1>
       <ul className="space-y-5">
-        {data.map((item: JSONFile, index) => (
-          <li key={item.id}>
-            {index + 1 + ")"} {item.name}
-            <button className="p-2 mx-1 bg-stone-300" onClick={() => handleDownloadClick(item.id)}>
-              Download
-            </button>
-          </li>
-        ))}
+        {data.length > 0 ? (
+          data.map((item: JSONFile, index) => (
+            <li key={item.id}>
+              {index + 1 + ")"} {item.name}
+              <button
+                className="p-2 mx-1 bg-stone-300"
+                onClick={() => handleDownloadClick(item.id)}
+              >
+                Download
+              </button>
+            </li>
+          ))
+        ) : (
+          <li>No JSON data available.</li>
+        )}
       </ul>
     </div>
   );
