@@ -60,7 +60,7 @@ const JsonsList = () => {
         </TableHeader>
         <TableBody>
           {jsons?.map((json, index) => (
-            <TableRow>
+            <TableRow key={json.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{json.name}</TableCell>
               <TableCell>{new Date(json.createdAt).toLocaleString()}</TableCell>

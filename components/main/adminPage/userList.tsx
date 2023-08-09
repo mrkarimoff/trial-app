@@ -42,7 +42,7 @@ const UserList = () => {
       </TableHeader>
       <TableBody>
         {users?.map((user, index) => (
-          <TableRow>
+          <TableRow key={user.id}>
             <TableCell>{index + 1}</TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>

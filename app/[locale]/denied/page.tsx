@@ -20,7 +20,7 @@ const DeniedPage = async () => {
     return (
       <div className="my-20 gap-2 flex flex-col items-center">
         <h1 className="text-center text-red-600 text-2xl">Access Denied!!!</h1>
-        <p>
+        <p className="text-center">
           You do not have admin permissions, please{" "}
           <Link className="underline text-blue-600" href={"/role"}>
             change your role
