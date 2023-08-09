@@ -16,20 +16,12 @@ type JSONData = {
 };
 
 const Jsons = () => {
-  const [data, setData] = useState<Array<JSONFile>>([
-    {
-      id: 12,
-      data: "string",
-      name: "string",
-      createdAt: "string",
-      updatedAt: "string",
-    },
-  ]);
+  const [data, setData] = useState<Array<JSONFile>>([]);
 
   const getJsons = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
     const data: Array<JSONFile> = await res.json();
-    // setData(data);
+    setData(data);
   };
 
   useEffect(() => {
@@ -65,7 +57,7 @@ const Jsons = () => {
     <div>
       <h1>Jsons Page</h1>
       <ul className="space-y-5">
-        {data?.map((item: JSONFile, index) => (
+        {data.map((item: JSONFile, index) => (
           <li key={item.id}>
             {index + 1 + ")"} {item.name}
             <button className="p-2 mx-1 bg-stone-300" onClick={() => handleDownloadClick(item.id)}>
