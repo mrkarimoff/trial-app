@@ -1,4 +1,8 @@
 {
+  "HomePage": {
+    "title": "The most recent JSON file",
+    "fileName": "File name:"
+  },
   "DeniedPage": {
     "deniedMsg": "Access Denied!!!",
     "warning": "You do not have admin permissions, please",

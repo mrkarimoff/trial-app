@@ -1,9 +1,17 @@
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    return NextResponse.json({ data: "The most recently uploaded JSON." });
+    const mostRecentJsonDocument = await prisma.jsonData.findFirst({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 1,
+    });
+
+    return NextResponse.json(mostRecentJsonDocument);
   } catch (error) {
-    return NextResponse.json({ data: error });
+    return NextResponse.json({ message: "Something is wrong", error });
   }
 }

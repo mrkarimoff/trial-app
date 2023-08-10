@@ -3,6 +3,7 @@ import SignInMessage from "@/components/main/deniedPage/signInMessage";
 import { getServerSession, Session } from "next-auth";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { redirect } from "next/navigation";
 
 const DeniedPage = ({ session }: { session: Session | null }) => {
   const t = useTranslations("DeniedPage");
@@ -37,7 +38,7 @@ const DeniedPage = ({ session }: { session: Session | null }) => {
       </div>
     );
   }
-  return null;
+  return redirect("/");
 };
 
 const DeniedPageContainer = async () => {
