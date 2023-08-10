@@ -18,7 +18,14 @@ const LanguageSwitcher = ({ locale, width }: LanguageSwitcherProps) => {
   const pathname = usePathname();
 
   return (
-    <Select onValueChange={(val) => router.push(pathname, { locale: val })}>
+    <Select
+      onValueChange={(val) => {
+        router.push(pathname, { locale: val });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }}
+    >
       <SelectTrigger
         className={`dark:bg-slate-700 dark:hover:bg-slate-600 bg-white hover:bg-stone-100 ${width} space-x-1 text-xs sm:text-sm`}
       >
