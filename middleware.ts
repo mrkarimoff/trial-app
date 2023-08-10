@@ -16,7 +16,7 @@ const authMiddleware = withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: ({ token }) => token != null,
     },
     pages: {
       signIn: "/denied",
