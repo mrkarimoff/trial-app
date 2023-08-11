@@ -14,7 +14,7 @@
 
 ## Introduction
 
-This project is a trial application showcasing the use of Next.js and related technologies to implement various features and functionality.
+This project is a trial application showcasing the use of Next.js and related technologies to implement various features and functionality!
 
 ## Features
 
