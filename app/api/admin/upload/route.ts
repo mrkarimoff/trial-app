@@ -8,6 +8,7 @@ type JsonFile = {
   name: string;
 };
 
+// Upload a json as string to database
 export async function POST(req: Request) {
   const session = await getServerSession(options);
   if (session?.user.role !== "admin")

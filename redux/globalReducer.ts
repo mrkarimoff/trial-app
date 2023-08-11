@@ -20,7 +20,7 @@ const initialState: GlobalState = {
 };
 
 export const globalSlice = createSlice({
-  name: "counter",
+  name: "global",
   initialState,
   reducers: {
     updateUser: (state, action: PayloadAction<User>) => {

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
+// Update user role
 export async function PUT(req: Request) {
   const session = await getServerSession(options);
   if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });

@@ -9,6 +9,7 @@ type Params = {
   };
 };
 
+// Get single json file
 export async function GET(req: Request, { params }: Params) {
   const session = await getServerSession(options);
   if (!session) return NextResponse.json({ message: "Access Denied" }, { status: 403 });
@@ -16,7 +17,6 @@ export async function GET(req: Request, { params }: Params) {
   const { id } = params;
 
   try {
-    // Fetch the JSON data by id
     const jsonData = await prisma.jsonData.findUnique({
       where: {
         id: parseInt(id),
@@ -36,6 +36,7 @@ export async function GET(req: Request, { params }: Params) {
   }
 }
 
+// Delete single json file
 export async function DELETE(req: Request, { params }: Params) {
   const session = await getServerSession(options);
   if (session?.user.role !== "admin")

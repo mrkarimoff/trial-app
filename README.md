@@ -11,7 +11,6 @@
 - [Localization](#localization)
 - [Styling](#styling)
 - [Deployment](#deployment)
-- [Contact](#contact)
 
 ## Introduction
 

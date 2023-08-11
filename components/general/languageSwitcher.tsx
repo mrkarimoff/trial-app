@@ -23,7 +23,7 @@ const LanguageSwitcher = ({ locale, width }: LanguageSwitcherProps) => {
         router.push(pathname, { locale: val });
         setTimeout(() => {
           window.location.reload();
-        }, 1500);
+        }, 1200);
       }}
     >
       <SelectTrigger

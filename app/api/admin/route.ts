@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
+// Get all users
 export async function GET(req: Request) {
   const session = await getServerSession(options);
   if (session?.user.role !== "admin")
