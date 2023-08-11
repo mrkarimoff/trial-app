@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
 import { HiXMark } from "react-icons/hi2";

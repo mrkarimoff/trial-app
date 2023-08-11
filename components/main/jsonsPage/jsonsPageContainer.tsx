@@ -13,18 +13,13 @@ type JSONFile = {
   updatedAt: string;
 };
 
-type JSONData = {
-  id: number;
-  data: JSON;
-  name: string;
-};
-
 type JsonsPageContainerProps = {
   title: string;
   noFilesMsg: string;
+  errMsg: string;
 };
 
-const JsonsPageContainer = ({ title, noFilesMsg }: JsonsPageContainerProps) => {
+const JsonsPageContainer = ({ title, noFilesMsg, errMsg }: JsonsPageContainerProps) => {
   const { toast } = useToast();
   const [data, setData] = useState<Array<JSONFile>>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +35,8 @@ const JsonsPageContainer = ({ title, noFilesMsg }: JsonsPageContainerProps) => {
       const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + `/api/jsons/${id}`, {
         method: "GET",
       });
-      const jsonData: JSONData = await res.json();
+      const jsonData = await res.json();
+      if (jsonData?.message) throw new Error();
 
       // Convert the JSON data to a Blob
       const blobData = new Blob([JSON.stringify(jsonData?.data, null, 2)], {
@@ -50,31 +46,33 @@ const JsonsPageContainer = ({ title, noFilesMsg }: JsonsPageContainerProps) => {
       // Create a temporary anchor element to trigger the download
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(blobData);
-      downloadLink.download = jsonData?.name as string; // Set the desired file name here
+      downloadLink.download = jsonData?.name; // Set the desired file name here
       downloadLink.click();
 
       // Clean up the temporary anchor element
       URL.revokeObjectURL(downloadLink.href);
-      setIsDownloading(false);
     } catch (error) {
-      console.error("Error fetching JSON data:", error);
+      console.error(error);
+      toast({ variant: "destructive", title: errMsg });
     }
+    setIsDownloading(false);
   };
 
   async function getJsons() {
     setIsLoading(true);
     try {
       const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/jsons", { method: "GET" });
-      const data: Array<JSONFile> = await res.json();
+      const data = await res.json();
+
+      if (data?.message) throw new Error();
       setData(data);
-      setIsLoading(false);
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: error.message,
-      });
+    } catch (error) {
+      console.error(error);
+      toast({ variant: "destructive", title: errMsg });
     }
+    setIsLoading(false);
   }
+
   return (
     <div className="container">
       <h1 className="text-center text-xl my-2 font-semibold">{title}</h1>

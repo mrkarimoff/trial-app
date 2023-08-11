@@ -3,8 +3,11 @@ import { useTranslations } from "next-intl";
 
 const JsonsPage = () => {
   const t = useTranslations("JsonsPage");
+  const tr = useTranslations("Error");
 
-  return <JsonsPageContainer title={t("title")} noFilesMsg={t("noFilesMsg")} />;
+  return (
+    <JsonsPageContainer errMsg={tr("errMsg")} title={t("title")} noFilesMsg={t("noFilesMsg")} />
+  );
 };
 
 export default JsonsPage;

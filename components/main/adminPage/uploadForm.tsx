@@ -41,14 +41,20 @@ const UploadForm = ({ setOpenModal, openModal, getJsons, UiTranlations }: IUploa
     }
 
     // upload the files
-    const data = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/admin/upload", {
-      method: "POST",
-      body: JSON.stringify(jsons),
-    }).then(async (res) => await res.json());
-
-    console.log(data);
+    try {
+      await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/admin/upload", {
+        method: "POST",
+        body: JSON.stringify(jsons),
+      }).then(async (res) => await res.json());
+      getJsons();
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: UiTranlations.errMsg,
+      });
+    }
     emptyForm();
-    getJsons();
   }
 
   const emptyForm: () => void = () => {

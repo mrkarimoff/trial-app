@@ -6,24 +6,33 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useToast } from "@/components/ui/use-toast";
 import { User } from "@/redux/globalReducer";
 import { useState, useEffect } from "react";
 import { Loader } from "../loader";
 
 const UserList = ({ UiTranlations }: { UiTranlations: any }) => {
+  const { toast } = useToast();
   const [users, setUsers] = useState<Array<User>>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     getUsers();
   }, []);
 
   async function getUsers() {
-    const data: User[] = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/admin").then(
-      async (res) => await res.json()
-    );
-    setUsers(data);
+    setIsLoading(true);
+    try {
+      const data = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/admin").then(
+        async (res) => await res.json()
+      );
+
+      if (data?.message) throw new Error();
+      setUsers(data);
+    } catch (error) {
+      console.error(error);
+      toast({ variant: "destructive", title: UiTranlations.errMsg });
+    }
     setIsLoading(false);
   }
 

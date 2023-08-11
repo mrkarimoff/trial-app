@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "Самый последний файл JSON",
-    "fileName": "Имя файла:"
+    "fileName": "Имя файла:",
+    "noFile": "Файлов пока нет!"
   },
   "DeniedPage": {
     "deniedMsg": "Доступ запрещен!!!",
@@ -58,6 +59,10 @@
     "dndFilesMsg": "Перетащите файлы сюда или нажмите, чтобы выбрать файлы",
     "acceptedFiles": "Принятые файлы",
     "rejectedFiles": "Rejected Files",
-    "removeBtn": "удалять"
+    "removeBtn": "удалять",
+    "noFile": "Файлов пока нет!"
+  },
+  "Error": {
+    "errMsg": "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
   }
 }

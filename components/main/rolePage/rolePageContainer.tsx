@@ -1,5 +1,6 @@
 "use client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 import { updateUser } from "@/redux/globalReducer";
 import { RootState, store } from "@/redux/store";
 import { useSession } from "next-auth/react";
@@ -7,28 +8,25 @@ import { FaUserCheck, FaUserSecret } from "react-icons/fa";
 import { ImUser } from "react-icons/im";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
-type DataType = {
-  createdAt: string;
-  email: string;
-  id: string;
-  image: string;
-  name: string;
-  role: string;
-  updatedAt: string;
-};
-
 const RolePageContainer = ({ UiTranslations }: { UiTranslations: any }) => {
+  const { toast } = useToast();
   const dispatch = useDispatch();
   const { data: session } = useSession();
   const user = useSelector((state: RootState) => state.global.user);
 
   const updateRole = async (role: string) => {
-    const data: DataType = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/role", {
-      method: "PUT",
-      body: JSON.stringify({ role, email: session?.user.email }),
-    }).then(async (res) => await res.json());
+    try {
+      const data = await fetch(process.env.NEXT_PUBLIC_DOMAIN + "/api/role", {
+        method: "PUT",
+        body: JSON.stringify({ role, email: session?.user.email }),
+      }).then(async (res) => await res.json());
 
-    dispatch(updateUser(data));
+      if (data?.message) throw new Error();
+      dispatch(updateUser(data));
+    } catch (error) {
+      console.error(error);
+      toast({ variant: "destructive", title: UiTranslations.errMsg });
+    }
   };
 
   return (

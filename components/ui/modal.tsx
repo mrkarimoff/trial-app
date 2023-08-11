@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CSSProperties, ReactNode, useEffect } from "react";
 import ModalContent from "./modalContent";
 
-interface IModal {
+interface IModalProps {
   visible: boolean;
   title: string;
   btn?: {
@@ -19,7 +19,7 @@ interface IModal {
   form?: string;
 }
 
-const Modal = ({ visible, close, title, children, btn, modalContentStyle, form }: IModal) => {
+const Modal = ({ visible, close, title, children, btn, modalContentStyle, form }: IModalProps) => {
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = "hidden";

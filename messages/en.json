@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "The most recent JSON file",
-    "fileName": "File name:"
+    "fileName": "File name:",
+    "noFile": "No files yet!"
   },
   "DeniedPage": {
     "deniedMsg": "Access Denied!!!",
@@ -58,6 +59,10 @@
     "dndFilesMsg": "Drag & drop files here, or click to select files",
     "acceptedFiles": "Accepted Files",
     "rejectedFiles": "Rejected Files",
-    "removeBtn": "remove"
+    "removeBtn": "remove",
+    "noFile": "No files yet!"
+  },
+  "Error": {
+    "errMsg": "Something went wrong, please try again!"
   }
 }

@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 
 const AdminPage = () => {
   const t = useTranslations("Admin");
+  const tr = useTranslations("Error");
   const UiTranlations = {
     title: t("title"),
     userTab: t("userTab"),
@@ -25,6 +26,8 @@ const AdminPage = () => {
     acceptedFiles: t("acceptedFiles"),
     rejectedFiles: t("rejectedFiles"),
     removeBtn: t("removeBtn"),
+    errMsg: tr("errMsg"),
+    noFile: t("noFile"),
   };
 
   return <AdminPageWithProvider UiTranlations={UiTranlations} />;

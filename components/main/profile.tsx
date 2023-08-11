@@ -36,7 +36,7 @@ const Profile = ({ UiTranslations }: { UiTranslations: any }) => {
           <MenubarMenu>
             <MenubarTrigger title="Profile" className="cursor-pointer">
               <img
-                className="h-[25px] w-[25px] rounded-full object-cover sm:h-[40px] sm:w-[40px]"
+                className="rounded-full object-cover h-[40px] w-[40px]"
                 src={user?.image as string}
                 alt="profile-pic"
               />
