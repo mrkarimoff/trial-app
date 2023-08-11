@@ -21,7 +21,7 @@ This project is a trial application showcasing the use of Next.js and related te
 - User system with roles: admin, user, and participant
 - GitHub OAuth provider for account sign-up and login
 - Ability to change user roles
-- Admin-only page to upload JSON files to SQLite database using Prisma
+- Admin-only page to upload JSON files to PostgreSQL database using Prisma
 - Page for logged-in users to view and download uploaded JSON files
 - API routes for admin user list and public JSON data
 - Language localization using Next Intl for multiple languages
